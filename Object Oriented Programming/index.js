@@ -2,18 +2,18 @@
 
 // Using Constructor function
 
-const Person = function (firstName, birthYear) {
-  // console.log(this)
-  this.firstName = firstName;
-  this.birthYear = birthYear;
-};
+// const Person = function (firstName, birthYear) {
+//   // console.log(this)
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+// };
 
-Person.prototype.calcAge = function () {
-  console.log(`Age Calculator`);
-  console.log(2037 - this.birthYear);
-};
+// Person.prototype.calcAge = function () {
+//   console.log(`Age Calculator`);
+//   console.log(2037 - this.birthYear);
+// };
 
-const person1 = new Person(`Arpit`, 1999);
+// const person1 = new Person(`Arpit`, 1999);
 // console.log(person1);
 // person1.calcAge();
 
@@ -24,28 +24,122 @@ const array = [3, 9, 8, 7, 5, 6, , 4, 5, 3, 4, 5];
 // console.log(array.__proto__ == Array.prototype);
 // console.log(array.__proto__.__proto__);
 
-// challenge
+// ES6 CLASSES
 
-const Car = function (make, speed) {
-  this.make = make;
-  this.speed = speed;
+// class Personcl {
+//   constructor(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   }
+
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   }
+// }
+
+// const jessica = new Personcl(`Jessica`, 2002);
+// console.log(jessica);
+// jessica.calcAge();
+
+// getters and setters in JavaScript
+
+const account = {
+  owner: `Jessica`,
+  movements: [200, 300, 500, 600],
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(mov) {
+    this.movements.push(mov);
+  },
 };
 
-Car.prototype.accelerate = function () {
-  this.speed += 10;
-  console.log(`${this.make} going at ${this.speed}km/hrs `);
-};
+// console.log(account.latest);
+// account.latest = 950;
+// console.log(account.movements);
 
-Car.prototype.brake = function () {
-  this.speed -= 5;
-  console.log(`${this.make} going at ${this.speed}km/hrs `);
-};
+// class Personcl {
+//   constructor(fullName, birthYear) {
+//     this.fullName = fullName;
+//     this.birthYear = birthYear;
+//   }
 
-const car1 = new Car(`BMW`, 120);
-const car2 = new Car(`Mercedes`, 95);
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   }
 
-car1.accelerate();
-car1.brake();
-car1.accelerate();
-car2.accelerate();
-car2.brake();
+//   get Age() {
+//     return 2024 - this.birthYear;
+//   }
+
+//   set fullName(name) {
+//     console.log(name);
+//     if (name.includes(` `)) {
+//       this._fullName = name;
+//     } else {
+//       alert(`Enter full Name`);
+//     }
+//   }
+
+//   static hey() {
+//     console.log(`Hey There`);
+//   }
+// }
+
+// const jessica = new Personcl(`Jessica chan`, 1995);
+// console.log(jessica.hey());
+// console.log(Personcl.hey());
+// jessica.fullName = `John Cena`;
+// console.log(jessica);
+
+// static methods in JavaScript
+
+// 3. object.create() -> Third way to create prototype Inheritane.
+
+// const Personproto = {
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   },
+// };
+
+// let steven = Object.create(Personproto);
+// console.log(steven);
+// steven.name = `Steven Stone`;
+// steven.birthYear = 1997;
+// console.log(steven);
+// steven.calcAge();
+// console.log(steven.__proto__);
+
+// Inheritance b/w classes
+
+// first using prootype function
+
+// const Person = function (firstName, birthYear) {
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+// };
+
+// Person.prototype.calcAge = function () {
+//   return 2024 - this.birthYear;
+// };
+
+// const Student = function (firstName, birthYear, course) {
+//   Person.call(this, firstName, birthYear);
+//   this.course = course;
+// };
+
+// Student.prototype = Object.create(Person.prototype);
+// Student.prototype.introduce = function () {
+//   console.log(
+//     `Hi, My name is ${this.firstName} and I am student of ${this.course}`
+//   );
+// };
+
+// // console.log(Student.__proto__);
+// // const student1 = new Student(`Arpit`, 1999, `Engineering`);
+// // console.log(student1);
+// // console.log(student1.calcAge());
+// // student1.introduce();
+
+// For inheritance b/w ES6 classes we need only extends keyword and super keyword
