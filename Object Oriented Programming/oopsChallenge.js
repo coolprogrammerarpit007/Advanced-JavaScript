@@ -137,3 +137,72 @@ const tesla = new EV(`Tesla`, 130, 89);
 // console.log(tesla);
 // tesla.accelerate();
 // tesla.accelerate();
+
+// Challenge 4
+
+class CarCl3 {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    return this;
+  }
+
+  brake() {
+    this.speed -= 5;
+    return this;
+  }
+}
+
+// Inheritance using ES6
+
+class EVCL extends CarCl3 {
+  // private fields
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.#charge -= 1;
+    this.speed += 20;
+    console.log(
+      `${this.make} running at ${this.speed} km/hrs with ${this.charge}% charge`
+    );
+    console.log(this);
+    return this;
+  }
+
+  // static helper() {
+  //   console.log(`helper`);
+  // }
+}
+
+const tesla1 = new EVCL(`Tesla`, 150, 75);
+console.log(tesla1);
+tesla1.accelerate();
+tesla1.accelerate().accelerate().accelerate().brake();
+console.log(tesla1.speed);
+
+// tesla1.helper();
+// console.log(tesla1.#charge);
+// tesla1.accelerate();
+// tesla1.accelerate();
+// tesla1.accelerate();
+// tesla1.accelerate();
+// tesla1.accelerate();
+// tesla1.chargeBattery(95);
+// tesla1.accelerate();
+// tesla1.brake();
+// tesla1.brake();
+// tesla1.brake();
+// console.log(tesla1.speed);
